@@ -1,8 +1,0 @@
-
-void passa_turno();
-void gestore_vittoria();
-void calcola_punteggio(int vinc, int v1, int v2);
-int ricerca_idx_carta(bool set_mano);
-void carica_mano();
-void refresh_mano(int i);
-void setta_mano();
