@@ -1,0 +1,17 @@
+//prova
+
+#include <iostream>
+
+using namespace std;
+
+main(){
+	bool vero=true;
+	
+	int val1=34;
+	int val2=30;
+
+	if(vero == true && val1/10 == val2/10)
+		cout<<"CORRETTO\n";
+	else
+		cout<<"ERRORE\n";
+}

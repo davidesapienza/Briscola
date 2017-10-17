@@ -1,0 +1,15 @@
+#include <fstream>
+#include <gtk/gtk.h>
+#include <iostream>
+#include <cstring>
+#include <gtk/gtk.h>
+#include <cstdlib>
+#include "struttura_dati.h"
+
+
+void carica_mano();
+
+void setta_mano();
+
+void passa_turno();
+

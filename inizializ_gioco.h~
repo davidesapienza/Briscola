@@ -1,0 +1,17 @@
+#include <cstring>
+//#include "fileIO.h"
+#include <ctime>
+#include <cmath>
+#include <iostream>
+#include <fstream>
+#include <gtk/gtk.h>
+
+void carica_file(istream &is);
+
+void genera_nemero_carte();
+
+void genera_nome_carte(istream &is);
+
+void genera_mazzo(istream &is);
+
+void inizializza_partita();

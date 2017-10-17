@@ -1,0 +1,19 @@
+#include "fileIO.h"
+#include "struttura_dati.h"
+
+using namespace std
+/** Carica i nomi delle carte dal file e li mette nel mazzo[].carta[].
+ */
+void carica_file(istream &is){
+	
+	for(int i=0; i<NUM_CARTE; i++){
+		int j=0;
+		while(j<MAX_LUN_RIGA1){
+			is>>partita.mazzo[i].nome[j];
+			j++;
+			}
+		partita.mazzo[i].nome[j] = '\0';
+		}
+		
+}
+

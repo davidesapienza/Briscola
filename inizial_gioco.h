@@ -1,0 +1,1 @@
+void genera_mazzo();

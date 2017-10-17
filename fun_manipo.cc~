@@ -1,0 +1,95 @@
+#include "fileIO.h"
+#include "fun_manipo.h"
+#include "struttura_dati.h"
+
+
+using namespace std;
+
+/** Setta il campo sensitive della mano del giocatore, in base al turno.
+ */ 
+void setta_mano(){
+	if(turno == mio){
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta1")),true);
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta2")),true);
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta3")),true);
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta4")),false);
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta5")),false);
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta6")),false);
+		}
+	else{
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta1")),false);
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta2")),false);
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta3")),false);
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta4")),true);
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta5")),true);
+		gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder,"carta6")),true);
+		}
+}
+
+/** Funzione che genera la mano di gioco, caricando le carte da mazzo,
+ *  alle rispettive mani.
+ *  Funge anche da aggiornamento della mano durante il gioco.
+ */
+void carica_mano(){
+
+	for(int i=0; i<3; i++){
+		if(partita.mia_mano[i].selez == true){
+			partita.mia_mano[i].val=partita.mazzo[partita.idx].val;
+			strcpy(partita.mia_mano[i].nome, partita.mazzo[partita.idx].nome);
+			partita.mia_mano[i].selez=partita.mazzo[partita.idx].selez;
+			partita.idx++;
+			partita.mia_mano[i].selez = false;
+			}
+		}
+
+	for(int i=0; i<3; i++){
+		if(partita.avv_mano[i].selez == true){
+			partita.avv_mano[i].val=partita.mazzo[partita.idx].val;
+			strcpy(partita.avv_mano[i].nome, partita.mazzo[partita.idx].nome);
+			partita.avv_mano[i].selez=partita.mazzo[partita.idx].selez;
+			partita.idx++;
+			partita.mia_mano[i].selez = false;
+			}
+		}
+
+	//IMPORTANTE
+	// Faccio idx++ perchè in questo momento punta alla carta del mazzo che però è la mia
+	// briscola, quindi non posso pescarla, e la salto perchè deve rimanere fissa
+	partita.idx++;
+}
+
+
+
+
+
+
+/** Funzione che cambia il turno.
+ */
+void passa_turno(){
+	/* Ho giocato la mia carta, e quindi adesso devo aspettare 
+	 * che l'avversario giochi la sua.
+	 */
+	if(turno == mio){
+		turno = avversario;
+		}
+	
+	/* L'avversario ha giocato, quindi devo congelare il gioco, 
+	 * gestire chi ha vinto,
+	 * liberare le tavolo di gioco,
+	 * settare a sensitive il mazzo per poter pescare, 
+	 * quindi aggiornare le mani,
+	 * e far comparire le carte nuove nelle rispettive mani 
+ 	 */
+	else{
+		turno = mio;
+		//fine_mano();
+		// Carica la mano solo alla fine di entrambi i turni
+		carica_mano();
+		}
+	setta_mano();
+	
+
+
+}
+
+

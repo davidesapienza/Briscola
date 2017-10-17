@@ -1,0 +1,21 @@
+OBJ = Briscola.o fun_manipo.o inizializ_gioco.o
+
+CXXFLAGS=$(DEBUG_FLAGS) -Wall `pkg-config --cflags gtk+-3.0`
+LDFLAGS=-export-dynamic `pkg-config --libs gtk+-3.0`
+
+Briscola: $(OBJ)
+	g++ -o Briscola  $(OBJ) $(LDFLAGS)
+
+-include dependencies
+
+.PHONY: depend clean cleanall
+
+depend:
+	g++ -MM *.cpp > dependencies
+clean:
+	rm *.o
+cleanall:
+	rm Briscola *.o *~
+
+	
+	

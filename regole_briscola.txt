@@ -1,0 +1,34 @@
+﻿Procedimento per briscola:
+
+1_ mischia le carte
+	genera un array di interi, e crealo casualmente
+2_ dai tre carte all'avversario, e tre carte a me, e scopri la briscola
+	la briscola è sempre la 7 carta dell'array
+
+Regole di briscola:
+
+precedenze: 1, 3, rè, cavallo, fante, 7, 6, 5, 4, 2  (sullo stesso segno)
+
+su segni diversi: 
+
+se non c'è briscola, quello che ha giocato per primo,
+se c'è una briscola, vince la briscola, 
+
+strategia:
+
+giocare sempre la carta ottima tra le tre in mano:
+mosse diverse in base alle seguenti carte:
+	-briscola bassa
+	-briscola alta 
+	-liscio i cui carichi non sono ancora usciti
+	-liscio i cui carichi sono già usciti
+	-carico 1 se il numero di briscole uscite è elevato
+	-carico 3 se carico 1 è gia uscito, se il numero di briscole uscite è elevato
+	-punti picoli se i carichi sono già usciti
+tutte le considerazioni sono sulle carte che sono già uscite, e che ho in mano in quel momento, ovvero un esempio: se è uscito il 3 di bast. e io in mano ho l'asso e il rè sempre di bastoni, posso tranquillamente giocare il rè, e pre vincere l'avversario dovrà giocare briscola.
+
+Cose essenziali:
+
+il Pc deve tener conto per ogni seme delle carte che sono già uscite, 
+e dei punti che ha fino a quel momento lui e l'avversario.
+
